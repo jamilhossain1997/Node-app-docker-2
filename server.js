@@ -14,9 +14,9 @@ app.get('/home',(req,res)=>{
     res.send('Home Page welcome to our website');
 });
 
-
-
-
+app.get('/contact',(req,res)=>{
+    res.send('Contact Us');
+});
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
