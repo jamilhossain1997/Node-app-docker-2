@@ -10,6 +10,12 @@ app.get('/about',(req,res)=>{
     res.send('About Us');
 });
 
+app.get('/home',(req,res)=>{
+    res.send('Home Page welcome to our website');
+});
+
+
+
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
