@@ -9,4 +9,4 @@ services:
       - .:/home/node/app
       - /home/node/app/node_modules
 
-    command: npm run dev
+    command: npx nodemon -L server.js 
