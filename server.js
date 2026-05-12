@@ -18,9 +18,7 @@ app.get('/contact',(req,res)=>{
     res.send('Contact Us');
 });
 
-app.get('/services',(req,res)=>{
-    res.send('Our Services');
-});
+
 
 
 app.listen(port, () => {
