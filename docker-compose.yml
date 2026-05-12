@@ -8,11 +8,10 @@ services:
     volumes:
       - .:/home/node/app
       - /home/node/app/node_modules
+    command: npx nodemon -L server.js
 
-    command: npx nodemon -L server.js 
-
-  mongobd:
-    image: mongo ,
+  mongodb:
+    image: mongo
     ports:
       - "27017:27017"
     environment:
@@ -28,6 +27,6 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
-      ME_CONFIG_MONGODB_SERVER: mongobd
-    
-      
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    depends_on:
+      - mongodb
