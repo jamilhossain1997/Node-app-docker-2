@@ -22,9 +22,6 @@ app.get('/services',(req,res)=>{
     res.send('Our Services');
 });
 
-app.get('/products',(req,res)=>{
-    res.send('Our Products');
-});
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
