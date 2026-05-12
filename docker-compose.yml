@@ -9,6 +9,8 @@ services:
       - .:/home/node/app
       - /home/node/app/node_modules
     command: npx nodemon -L server.js
+    environment:
+      - MONGO_URI=mongodb://admin:password@mongodb:27017/mydatabase-docker-2?authSource=admin
 
   mongodb:
     image: mongo
