@@ -28,25 +28,55 @@ exports.createUser = async (req, res) => {
         });
     }
 
-   
-}
 
-exports.getUsers = async (req,res) =>{
-    const users = await user.find();
+};
 
-    try{
-        if(users.length === 0){
+exports.getUsers = async (req, res) => {
+    try {
+        const users = await user.find();
+
+        if (!users.length) {
             return res.status(404).json({
                 success: false,
-                message: 'No users found'
+                message: "No users found",
             });
         }
+
+        return res.status(200).json({
+            success: true,
+            data: users,
+        });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
-            message: 'Failed to fetch users',
-            error: error.message
+            message: "Failed to fetch users",
+            error: error.message,
         });
     }
-    
+};
+
+
+exports.getUserById =async (req,res) =>{
+    try {
+        const userId = req.params.id;
+        const userData = await user.findById(userId);
+
+        if (!userData) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: userData,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch user",
+            error: error.message,
+        });
+    }
 }
