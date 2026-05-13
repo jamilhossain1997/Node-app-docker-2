@@ -8,12 +8,20 @@ exports.createUser = async (req, res) => {
             email
         });
 
-        await newUser.save();
-        res.status(201).json({
-            success: true,
-            message: 'User created successfully',
-            data: newUser
-        });
+        const emailExists = await user.findOne({ email });
+
+        if (emailExists) {
+            return res.status(400).json({});
+        } else {
+            await newUser.save();
+            res.status(201).json({
+                success: true,
+                message: 'User created successfully',
+                data: newUser
+            });
+        }
+
+
     } catch (error) {
         res.status(500).json({
             success: false,
