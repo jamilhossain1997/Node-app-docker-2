@@ -27,4 +27,26 @@ exports.createUser = async (req, res) => {
             error: error.message
         });
     }
+
+   
+}
+
+exports.getUsers = async (req,res) =>{
+    const users = await user.find();
+
+    try{
+        if(users.length === 0){
+            return res.status(404).json({
+                success: false,
+                message: 'No users found'
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Failed to fetch users',
+            error: error.message
+        });
+    }
+    
 }
