@@ -1,27 +1,25 @@
-const express = require('express');
+require("dotenv").config();
+
+const express = require("express");
+
+const connectDB = require("./config/db");
+
+const userRoutes = require("./routes/userRoutes");
+
 const app = express();
-const port = 3000;
 
-app.get('/',(req,res)=>{
-   res.send('Hello World');
-});  
+connectDB();
 
-app.get('/about',(req,res)=>{
-    res.send('About Us');
+app.use(express.json());
+
+app.use("/api/users", userRoutes);
+
+app.get("/", (req, res) => {
+  res.send("API Running...");
 });
 
-app.get('/home',(req,res)=>{
-    res.send('Home Page welcome to our website');
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
-
-app.get('/contact',(req,res)=>{
-    res.send('Contact Us');
-});
-
-
-
-
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
-
