@@ -20,8 +20,6 @@ exports.createUser = async (req, res) => {
                 data: newUser
             });
         }
-
-
     } catch (error) {
         res.status(500).json({
             success: false,
